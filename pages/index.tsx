@@ -1,8 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-
-import loadQuestions from "../lib/load-questions";
 
 import { QuizPlayer, StartPanel } from "../components";
 
@@ -10,7 +8,7 @@ type HomeProps = {
   apiKey: String;
 };
 
-const Home: NextPage<HomeProps> = ({ apiKey }: HomeProps) => {
+const Home: NextPage<HomeProps> = ({ apiKey }) => {
   const [playerName, setPlayerName] = useState<String>("");
   const [difficulty, setDifficulty] = useState<String>("Easy");
 
@@ -19,32 +17,15 @@ const Home: NextPage<HomeProps> = ({ apiKey }: HomeProps) => {
     setDifficulty(difficulty);
   };
 
-  const [questions, setQuestions] = useState([]);
-  const [isLoading, setLoading] = useState(false);
-
-  const baseUrl = "https://quizapi.io/api/v1/questions";
-  useEffect(() => {
-    setLoading(true);
-    loadQuestions(
-      `${baseUrl}?apiKey=${apiKey}&limit=10&difficulty=${difficulty}`
-    ).then((questionsData) => {
-      setQuestions(questionsData);
-      setLoading(false);
-    });
-  }, []);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (!questions) return <p>No questions data available.</p>;
-
   return (
-    <div className="dark:bg-slate-800">
+    <div className="md:flex flex-col bg-slate-100 max-w-sm mx-auto dark:bg-slate-800">
       <Head>
         <title>Quiz!</title>
         <meta name="description" content="Prototype quiz app using Quiz Api" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="">
+      <main className="flex flex-col w-full">
         {!playerName ? (
           <StartPanel parentCallback={setupCallback} />
         ) : (
@@ -52,12 +33,12 @@ const Home: NextPage<HomeProps> = ({ apiKey }: HomeProps) => {
             <h1>
               Olá {playerName}, difficulty: {difficulty}
             </h1>
-            <QuizPlayer />
+            <QuizPlayer apiKey={apiKey} difficulty={difficulty} />
           </>
         )}
       </main>
 
-      <footer className="">
+      <footer className="flex ">
         <a
           href="https://github.com/guilhermemotta"
           target="_blank"
