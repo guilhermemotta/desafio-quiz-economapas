@@ -1,3 +1,32 @@
+# Desafio Economapas – Desenvolvedor Front End React Js
+
+Desenvolva um sistema de quiz utilizando React Js, Vue ou Next. Para isso, você deverá utilizar
+a API gratuita quizapi para consultar, exibir e validar as questões.
+
+A documentação se encontra em:
+[QuizApi](https://quizapi.io/docs/1.0/random-quiz)
+
+Você pode usar a seguinte apiKey ou utilizar uma própria, caso faça seu cadastro no quizapi:
+_x5yYMkHgQ0xhz7Q7RD1CfTQESV5gXkBwlfcuNFed_
+
+### Requisitos:
+
+- [x] 10 questões por quiz;
+- [x] Usuário precisa informar um nome antes de iniciar;
+- [x] Após cadastrar um nome, essa informação deverá ficar sempre visível na parte superior da página;
+- [ ] O usuário só poderá visualizar e responder uma questão por vez;
+- [ ] Cada questão deve ter pelo menos 4 opções de resposta;
+- [x] Usuário precisa escolher a dificuldade easy (default) ou hard antes de iniciar o teste;
+- [ ] Ao término do quiz, o usuário poderá visualizar o gabarito de cada questão e saber a quantidade de acertos;
+- [ ] Ao término do quiz, o usuário poderá iniciar outro quiz.
+
+**Obs:** Este desafio pode ser feito e entregue pelo CodeSandbox.
+
+**Obs2:** No final do desafio deve ser enviado os códigos/repositório Git e link de acesso para
+hospedagem online
+
+---
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
