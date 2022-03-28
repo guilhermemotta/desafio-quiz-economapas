@@ -38,14 +38,28 @@ const Home: NextPage<HomeProps> = ({ apiKey }) => {
         )}
       </main>
 
-      <footer className="flex ">
-        <a
-          href="https://github.com/guilhermemotta"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Desenvolvido por Guilherme Motta
-        </a>
+      <footer className=" bg-gray-100 dark:bg-gray-900 text-gray-500 text-center">
+        <small>
+          Desafio por{" "}
+          <a
+            className="underline"
+            href="https://economapas.com.br/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Economapas
+          </a>
+          . Desenvolvido por{" "}
+          <a
+            className="underline"
+            href="https://github.com/guilhermemotta"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Guilherme Motta
+          </a>
+          .
+        </small>
       </footer>
     </div>
   );

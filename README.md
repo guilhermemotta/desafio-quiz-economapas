@@ -14,7 +14,7 @@ _x5yYMkHgQ0xhz7Q7RD1CfTQESV5gXkBwlfcuNFed_
 - [x] 10 questões por quiz;
 - [x] Usuário precisa informar um nome antes de iniciar;
 - [x] Após cadastrar um nome, essa informação deverá ficar sempre visível na parte superior da página;
-- [ ] O usuário só poderá visualizar e responder uma questão por vez;
+- [x] O usuário só poderá visualizar e responder uma questão por vez;
 - [ ] Cada questão deve ter pelo menos 4 opções de resposta;
 - [x] Usuário precisa escolher a dificuldade easy (default) ou hard antes de iniciar o teste;
 - [ ] Ao término do quiz, o usuário poderá visualizar o gabarito de cada questão e saber a quantidade de acertos;

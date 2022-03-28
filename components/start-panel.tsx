@@ -20,13 +20,13 @@ const StartPanel = ({ parentCallback }: StartPanelProps) => {
 
   return (
     <form className="flex flex-col" onSubmit={handleSubmit}>
-      <h1 className="">Welcome to the Quiz Challenge</h1>
+      <h1 className="text-xl font-bold">Welcome to the Quiz Challenge</h1>
       <h3>Please enter your name so we can get started!</h3>
       <input
         name="playerName"
         type="text"
         placeholder="Name goes here :)"
-        autoFocus
+        autoFocus={true}
       />
       <h3>Now select the difficulty:</h3>
       <fieldset className="flex flex-row">
