@@ -1,4 +1,5 @@
-import { SyntheticEvent } from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
+import Button from "./button";
 
 type QuestionCardProps = {
   id: number;
@@ -21,6 +22,8 @@ const QuestionCard = ({
     return { answer, value };
   });
 
+  const [selectedAnswer, setSelectedAnswer] = useState("");
+
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
 
@@ -30,6 +33,11 @@ const QuestionCard = ({
 
     const playerAnswer = target.answers.value;
     parentCallback(id, playerAnswer);
+    setSelectedAnswer("");
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelectedAnswer(event.target.value);
   };
 
   return (
@@ -47,13 +55,15 @@ const QuestionCard = ({
                     name="answers"
                     value={answer.answer}
                     key={index}
+                    checked={selectedAnswer === answer.answer}
+                    onChange={handleChange}
                   />
                   {answer.value}
                 </label>
               )
             );
           })}
-        <button type="submit">Next</button>
+        <Button label="Next" />
       </form>
     </section>
   );

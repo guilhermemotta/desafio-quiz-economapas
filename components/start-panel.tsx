@@ -1,6 +1,6 @@
 import { SyntheticEvent } from "react";
 
-import { StartButton } from ".";
+import { Button } from ".";
 
 type StartPanelProps = {
   parentCallback: (name: String, difficulty: String) => void;
@@ -20,26 +20,35 @@ const StartPanel = ({ parentCallback }: StartPanelProps) => {
 
   return (
     <form className="flex flex-col" onSubmit={handleSubmit}>
-      <h1 className="text-xl font-bold">Welcome to the Quiz Challenge</h1>
-      <h3>Please enter your name so we can get started!</h3>
+      <h1 className="text-xl font-bold m-3">Welcome to the Quiz Challenge</h1>
+      <h3 className="text-lg m-2">
+        Please enter your name so we can get started!
+      </h3>
       <input
+        className="m-2 px-2 text-md"
         name="playerName"
         type="text"
         placeholder="Name goes here :)"
         autoFocus={true}
       />
-      <h3>Now select the difficulty:</h3>
-      <fieldset className="flex flex-row">
+      <h3 className="text-lg m-2">Now select the difficulty:</h3>
+      <fieldset className="flex flex-row m-2">
         <label>
           <span>Easy</span>
-          <input type="radio" name="difficulty" value="Easy" defaultChecked />
+          <input
+            className="m-2"
+            type="radio"
+            name="difficulty"
+            value="Easy"
+            defaultChecked
+          />
         </label>
         <label>
           <span>Hard</span>
-          <input type="radio" name="difficulty" value="Hard" />
+          <input className="m-2" type="radio" name="difficulty" value="Hard" />
         </label>
       </fieldset>
-      <StartButton label="Start!" />
+      <Button label="Start!" />
     </form>
   );
 };

@@ -18,20 +18,20 @@ const Home: NextPage<HomeProps> = ({ apiKey }) => {
   };
 
   return (
-    <div className="md:flex flex-col bg-slate-100 max-w-sm mx-auto dark:bg-slate-800">
+    <div className="md:flex flex-col max-w-sm max-h-screen mx-auto px-2 py-4">
       <Head>
         <title>Quiz!</title>
         <meta name="description" content="Prototype quiz app using Quiz Api" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col w-full">
+      <main className="flex flex-col w-full my-5 py-5 bg-slate-100 dark:bg-slate-800 shadow-lg">
         {!playerName ? (
           <StartPanel parentCallback={setupCallback} />
         ) : (
           <>
             <h1>
-              Olá {playerName}, difficulty: {difficulty}
+              Hello {playerName}, difficulty: {difficulty}
             </h1>
             <QuizPlayer apiKey={apiKey} difficulty={difficulty} />
           </>

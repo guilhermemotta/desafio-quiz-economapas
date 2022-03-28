@@ -20,7 +20,7 @@ export type QuestionData = {
   category: String;
 };
 
-type PlayerAnswer = {
+export type PlayerAnswer = {
   questionId: number;
   answer: String;
 };
@@ -32,6 +32,7 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
   const [isLoading, setLoading] = useState(false);
   const [playerAnswers, setPlayerAnswers] = useState<Array<PlayerAnswer>>([]);
   const [isInitialSetup, setInitialSetup] = useState(true);
+  const [playerScore, setPlayerScore] = useState(0);
 
   const baseUrl = "https://quizapi.io/api/v1/questions";
   useEffect(() => {
@@ -42,6 +43,7 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
       ).then((questionsData) => {
         setCurrentQuestionsData(questionsData);
         setCurrentIndex(0);
+        setPlayerScore(0);
         setCurrentQuestion(questionsData[currentIndex]);
         setLoading(false);
       });
@@ -63,7 +65,7 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
 
   return (
     <>
-      <h1>Quiz Player!</h1>
+      {/* <h1>Question # {currentIndex + 1}</h1> */}
 
       {currentQuestion ? (
         <QuestionCard
@@ -74,7 +76,10 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
           parentCallback={updatePlayerAnswers}
         />
       ) : (
-        <ResultsPanel playerAnswers={playerAnswers} />
+        <ResultsPanel
+          playerAnswers={playerAnswers}
+          questionsData={currentQuestionsData}
+        />
       )}
     </>
   );
