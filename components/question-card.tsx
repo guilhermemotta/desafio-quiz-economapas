@@ -3,12 +3,12 @@ import Button from "./button";
 
 type QuestionCardProps = {
   id: number;
-  question: String;
-  description?: String;
+  question: string;
+  description?: string;
   answers: Object;
-  tags?: String[];
-  category?: String;
-  parentCallback: (questionId: number, playerAnswer: String) => void;
+  tags?: string[];
+  category?: string;
+  parentCallback: (questionId: number, playerAnswer: string) => void;
 };
 
 const QuestionCard = ({
@@ -42,7 +42,7 @@ const QuestionCard = ({
 
   return (
     <section>
-      <h2>{question}</h2>
+      <h2 className="text-lg">{question}</h2>
       {description && <h2>{description}</h2>}
       <form className="flex flex-col" onSubmit={handleSubmit}>
         {answers &&
@@ -51,14 +51,16 @@ const QuestionCard = ({
               answer.value && (
                 <label key={index}>
                   <input
+                    className="sr-only peer"
                     type="radio"
                     name="answers"
                     value={answer.answer}
-                    key={index}
                     checked={selectedAnswer === answer.answer}
                     onChange={handleChange}
                   />
-                  {answer.value}
+                  <div className="mx-4 my-2 px-2 py-2 rounded-md border-2 border-sky-600 text-gray-800 peer-checked:text-white bg-transparent peer-checked:bg-sky-600">
+                    {answer.value}
+                  </div>
                 </label>
               )
             );

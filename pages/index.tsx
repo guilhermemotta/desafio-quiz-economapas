@@ -5,20 +5,20 @@ import Head from "next/head";
 import { QuizPlayer, StartPanel } from "../components";
 
 type HomeProps = {
-  apiKey: String;
+  apiKey: string;
 };
 
 const Home: NextPage<HomeProps> = ({ apiKey }) => {
-  const [playerName, setPlayerName] = useState<String>("");
-  const [difficulty, setDifficulty] = useState<String>("Easy");
+  const [playerName, setPlayerName] = useState<string>("");
+  const [difficulty, setDifficulty] = useState<string>("Easy");
 
-  const setupCallback = (newPlayer: String, difficulty: String) => {
+  const setupCallback = (newPlayer: string, difficulty: string) => {
     setPlayerName(newPlayer);
     setDifficulty(difficulty);
   };
 
   return (
-    <div className="md:flex flex-col max-w-sm max-h-screen mx-auto px-2 py-4">
+    <div className="md:flex flex-col max-w-2xl max-h-screen mx-auto px-2 py-4">
       <Head>
         <title>Quiz!</title>
         <meta name="description" content="Prototype quiz app using Quiz Api" />

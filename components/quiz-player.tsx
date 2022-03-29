@@ -7,23 +7,35 @@ import loadQuestions from "../lib/load-questions";
 import ResultsPanel from "./results-panel";
 
 type QuizPlayerProps = {
-  apiKey: String;
-  difficulty: String;
+  apiKey: string;
+  difficulty: string;
 };
 
 export type QuestionData = {
   id: number;
-  question: String;
-  description?: String;
+  question: string;
+  description?: string;
   answers: Object;
-  tags: String[];
-  category: String;
+  tags: string[];
+  category: string;
+  correct_answers: CorrectAnswers[];
 };
 
 export type PlayerAnswer = {
   questionId: number;
-  answer: String;
+  answer: string;
 };
+
+export type CorrectAnswers = {
+  answer_a_correct: string;
+  answer_b_correct: string;
+  answer_c_correct: string;
+  answer_d_correct: string;
+};
+
+// type PlayerScore = {
+
+// }
 
 const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
   const [currentQuestionsData, setCurrentQuestionsData] = useState([]);
@@ -32,7 +44,6 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
   const [isLoading, setLoading] = useState(false);
   const [playerAnswers, setPlayerAnswers] = useState<Array<PlayerAnswer>>([]);
   const [isInitialSetup, setInitialSetup] = useState(true);
-  const [playerScore, setPlayerScore] = useState(0);
 
   const baseUrl = "https://quizapi.io/api/v1/questions";
   useEffect(() => {
@@ -43,7 +54,6 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
       ).then((questionsData) => {
         setCurrentQuestionsData(questionsData);
         setCurrentIndex(0);
-        setPlayerScore(0);
         setCurrentQuestion(questionsData[currentIndex]);
         setLoading(false);
       });
@@ -56,7 +66,7 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
   if (isLoading) return <p>Loading...</p>;
   if (!currentQuestionsData) return <p>No questions data available.</p>;
 
-  const updatePlayerAnswers = (questionId: number, playerAnswer: String) => {
+  const updatePlayerAnswers = (questionId: number, playerAnswer: string) => {
     const currentAnswer: PlayerAnswer = { questionId, answer: playerAnswer };
     setPlayerAnswers([...playerAnswers, currentAnswer]);
     setCurrentIndex(currentIndex + 1);
@@ -65,8 +75,6 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
 
   return (
     <>
-      {/* <h1>Question # {currentIndex + 1}</h1> */}
-
       {currentQuestion ? (
         <QuestionCard
           id={currentQuestion.id}

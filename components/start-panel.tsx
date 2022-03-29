@@ -3,7 +3,7 @@ import { SyntheticEvent } from "react";
 import { Button } from ".";
 
 type StartPanelProps = {
-  parentCallback: (name: String, difficulty: String) => void;
+  parentCallback: (name: string, difficulty: string) => void;
 };
 
 const StartPanel = ({ parentCallback }: StartPanelProps) => {
@@ -32,20 +32,29 @@ const StartPanel = ({ parentCallback }: StartPanelProps) => {
         autoFocus={true}
       />
       <h3 className="text-lg m-2">Now select the difficulty:</h3>
-      <fieldset className="flex flex-row m-2">
+      <fieldset className="flex flex-row m-2 justify-around">
         <label>
-          <span>Easy</span>
           <input
-            className="m-2"
+            className="sr-only peer"
             type="radio"
             name="difficulty"
             value="Easy"
             defaultChecked
           />
+          <div className="rounded-md flex px-4 py-2 bg-transparent text-black peer-checked:bg-sky-600 peer-checked:text-white">
+            Easy
+          </div>
         </label>
         <label>
-          <span>Hard</span>
-          <input className="m-2" type="radio" name="difficulty" value="Hard" />
+          <input
+            className="sr-only peer"
+            type="radio"
+            name="difficulty"
+            value="Hard"
+          />
+          <div className="rounded-md flex px-4 py-2 bg-transparent text-black peer-checked:bg-sky-600 peer-checked:text-white">
+            Hard
+          </div>
         </label>
       </fieldset>
       <Button label="Start!" />
