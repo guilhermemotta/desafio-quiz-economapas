@@ -18,7 +18,7 @@ export type QuestionData = {
   answers: Object;
   tags: string[];
   category: string;
-  correct_answers: CorrectAnswers[];
+  correct_answers: CorrectAnswers;
 };
 
 export type PlayerAnswer = {
@@ -31,11 +31,9 @@ export type CorrectAnswers = {
   answer_b_correct: string;
   answer_c_correct: string;
   answer_d_correct: string;
+  answer_e_correct: string;
+  answer_f_correct: string;
 };
-
-// type PlayerScore = {
-
-// }
 
 const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
   const [currentQuestionsData, setCurrentQuestionsData] = useState([]);

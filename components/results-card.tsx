@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import Button from "./button";
-import { PlayerAnswer } from "./quiz-player";
+import { CorrectAnswers, PlayerAnswer } from "./quiz-player";
 
 type ResultsCardProps = {
   id: number;
@@ -16,7 +16,7 @@ type ResultsCardProps = {
   tags?: string[];
   category?: string;
   playerAnswer: PlayerAnswer;
-  correctAnswer: string;
+  correctAnswers: CorrectAnswers;
   parentCallback: (questionId: number, playerAnswer: string) => void;
 };
 
@@ -26,7 +26,7 @@ const ResultsCard = ({
   description,
   answers,
   playerAnswer,
-  correctAnswer,
+  correctAnswers,
   parentCallback,
 }: ResultsCardProps) => {
   const answersArray = Object.entries(answers).map(([answer, value]) => {
@@ -42,14 +42,17 @@ const ResultsCard = ({
       <div className="flex flex-col">
         {answers &&
           answersArray.map((answer, index) => {
+            const correctKey =
+              `${answer.answer}_correct` as keyof CorrectAnswers;
+            const correctAnswer = correctAnswers[correctKey];
             const colors =
               answer.answer === playerAnswer.answer
                 ? "text-white bg-sky-600"
                 : "text-gray-800 bg-transparent";
             const border =
-              playerAnswer.answer === correctAnswer
-                ? "border-green-500"
-                : "border-red-500";
+              correctAnswer === "true"
+                ? "border-green-500 border-4"
+                : "border-red-500 border-4";
             return (
               answer.value && (
                 <label key={index}>

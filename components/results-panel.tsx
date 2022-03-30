@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PlayerAnswer, QuestionData } from "./quiz-player";
+import { CorrectAnswers, PlayerAnswer, QuestionData } from "./quiz-player";
 import ResultsCard from "./results-card";
 
 type ResultsPanelProps = {
@@ -8,9 +8,21 @@ type ResultsPanelProps = {
 };
 
 const ResultsPanel = ({ playerAnswers, questionsData }: ResultsPanelProps) => {
-  console.log(playerAnswers);
-  console.table(questionsData);
-  const [correctAnswers, setCorrectAnswers] = useState<string[]>([]);
+  // const getCorrectAnswer = (questionsData: QuestionData, index: number) => {
+  //   if (!questionsData)
+  //     throw Error("getCorrectAnswer(...args) Invalid argument");
+  //   const correctAnswers = questionsData.correct_answers;
+  //   let currentCorrectAnswer = "";
+  //   for (let key in correctAnswers) {
+  //     console.log(`index = ${index}: key = ${key}`);
+  //     if (key === "true") {
+  //       currentCorrectAnswer = key;
+  //     }
+  //     console.log(key);
+  //     currentCorrectAnswer = "false";
+  //   }
+  //   return currentCorrectAnswer;
+  // };
 
   return (
     <article className="flex flex-col p-2">
@@ -25,7 +37,7 @@ const ResultsPanel = ({ playerAnswers, questionsData }: ResultsPanelProps) => {
               question={question.question}
               parentCallback={() => {}}
               playerAnswer={playerAnswers[index]}
-              correctAnswer={correctAnswers[index]}
+              correctAnswers={question.correct_answers}
             />
           );
         })}
