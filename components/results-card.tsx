@@ -1,12 +1,4 @@
-import {
-  ChangeEvent,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import Button from "./button";
-import { CorrectAnswers, PlayerAnswer } from "./quiz-player";
+import type { CorrectAnswers, PlayerAnswer } from "../types";
 
 type ResultsCardProps = {
   id: number;
@@ -33,7 +25,7 @@ const ResultsCard = ({
     return { answer, value };
   });
 
-  // console.log(`correctAnswer = ${correctAnswer}`);
+  if (!playerAnswer) return <></>;
 
   return (
     <section>

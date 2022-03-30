@@ -1,4 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+
 import Button from "./button";
 
 type QuestionCardProps = {
@@ -32,6 +33,7 @@ const QuestionCard = ({
     };
 
     const playerAnswer = target.answers.value;
+    if (playerAnswer === "") return;
     parentCallback(id, playerAnswer);
     setSelectedAnswer("");
   };
