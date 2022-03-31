@@ -19,7 +19,6 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
   const [playerAnswers, setPlayerAnswers] = useState<Array<PlayerAnswer>>([]);
   const [playerScore, setPlayerScore] = useState(0);
 
-  const baseUrl = "https://quizapi.io/api/v1/questions";
   useEffect(() => {
     setLoading(true);
     setUpQuestions(apiKey, difficulty)
