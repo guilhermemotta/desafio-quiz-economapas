@@ -1,6 +1,6 @@
 const LoadingOverlay = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center bg-white rounded-md shadow-lg px-4 pt-2 pb-8">
       <div className="loader ease-linear rounded-full border-4 border-t-4 border-sky-600 h-12 w-12 mb-4"></div>
       <h2 className="text-center text-gray-600 text-xl font-semibold">
         Setting up quiz...
