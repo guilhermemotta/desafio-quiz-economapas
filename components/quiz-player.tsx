@@ -53,7 +53,6 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
       correctAnswer,
     };
     if (correctAnswer && correctAnswer.includes(playerAnswer)) {
-      console.log("Ponto!");
       setPlayerScore(playerScore + 1);
     }
     setPlayerAnswers([...playerAnswers, currentAnswer]);
