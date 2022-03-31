@@ -8,27 +8,14 @@ body {
 }
 
 .loader {
+  content: "";
   border-top-color: #888;
-  -webkit-animation: spinner 1.5 linear infinite;
-  animation: spinner 1.5 linear infinite;
-}
-
-@-webkit-keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+  -webkit-animation: spinner 0.6s linear infinite;
+  animation: spinner 0.6s linear infinite;
 }
 
 @keyframes spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
+  to {
+    transform: rotate(360deg);
   }
 }

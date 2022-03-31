@@ -1,5 +1,6 @@
 import { ResultsCard } from ".";
 import type { PlayerAnswer, QuestionData } from "../types";
+import Button from "./button";
 
 type ResultsPanelProps = {
   playerAnswers: PlayerAnswer[];
@@ -12,6 +13,10 @@ const ResultsPanel = ({
   questionsData,
   playerScore,
 }: ResultsPanelProps) => {
+  const handleClick = () => {
+    window.location.reload();
+  };
+
   return (
     <article className="flex flex-col p-2">
       <h1 className="text-2xl">Results</h1>
@@ -30,6 +35,7 @@ const ResultsPanel = ({
             />
           );
         })}
+      <Button onClick={handleClick} label="Restart Quiz!" />
     </article>
   );
 };

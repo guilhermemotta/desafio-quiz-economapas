@@ -27,19 +27,14 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
       })
       .then(() => {
         setCurrentQuestion(questionsData[currentIndex]);
+        setLoading(false);
       })
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
     setCurrentQuestion(questionsData[currentIndex]);
-    setLoading(false);
   }, [questionsData, currentIndex]);
-
-  if (isLoading) {
-    return <LoadingOverlay />;
-  }
-  if (!questionsData) return <p>No questions data available.</p>;
 
   const updatePlayerAnswers = (
     questionId: number,
@@ -59,16 +54,23 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
     setCurrentQuestion(questionsData[currentIndex]);
   };
 
+  if (isLoading) {
+    return <LoadingOverlay />;
+  }
+  if (!questionsData) return <p>No questions data available.</p>;
+
   return (
     <>
       {currentQuestion && (
         <QuestionCard
           id={currentQuestion.id}
+          number={currentIndex + 1}
           question={currentQuestion.question}
           answers={currentQuestion.answers}
           description={currentQuestion.description}
           parentCallback={updatePlayerAnswers}
           correctAnswers={currentQuestion.correct_answers}
+          category={currentQuestion.category}
         />
       )}
       {playerAnswers.length === 10 && (

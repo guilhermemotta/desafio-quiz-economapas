@@ -6,6 +6,7 @@ import Button from "./button";
 
 type QuestionCardProps = {
   id: number;
+  number: number;
   question: string;
   description?: string;
   answers: Object;
@@ -21,7 +22,9 @@ type QuestionCardProps = {
 
 const QuestionCard = ({
   id,
+  number,
   question,
+  category,
   description,
   answers,
   correctAnswers,
@@ -54,6 +57,12 @@ const QuestionCard = ({
 
   return (
     <section className="bg-white">
+      {category && (
+        <h3 className="text-sm">
+          <strong>Category:</strong> {category}
+        </h3>
+      )}
+      <h1 className="text-xl">Question {"#" + number}</h1>
       <h2 className="text-lg">{question}</h2>
       {description && <h2>{description}</h2>}
       <form className="flex flex-col" onSubmit={handleSubmit}>
