@@ -17,7 +17,7 @@ _x5yYMkHgQ0xhz7Q7RD1CfTQESV5gXkBwlfcuNFed_
 - [x] #4 - O usuário só poderá visualizar e responder uma questão por vez;
 - [x] #5 - Cada questão deve ter pelo menos 4 opções de resposta;
 - [x] #6 - Usuário precisa escolher a dificuldade easy (default) ou hard antes de iniciar o teste;
-- [ ] #7 - Ao término do quiz, o usuário poderá visualizar o gabarito de cada questão e saber a quantidade de acertos;
+- [x] #7 - Ao término do quiz, o usuário poderá visualizar o gabarito de cada questão e saber a quantidade de acertos;
 - [ ] #8 - Ao término do quiz, o usuário poderá iniciar outro quiz.
 
 **Obs:** Este desafio pode ser feito e entregue pelo CodeSandbox.

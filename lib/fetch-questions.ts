@@ -7,11 +7,8 @@ async function fetchQuestions(
   const baseUrl = "https://quizapi.io/api/v1/questions";
   const currentUrl = `${baseUrl}?apiKey=${apiKey}&limit=10&difficulty=${difficulty}`;
 
-  // const response = await fetch(currentUrl, { method: "GET" });
-  const response = await fetch(currentUrl);
+  const response = await fetch(currentUrl, { method: "GET" });
   const data = await response.json();
-  console.log("fetchQuestions()");
-  console.log(response);
   if (response.ok) {
     const questions = data;
     if (questions) {
@@ -30,11 +27,15 @@ async function setUpQuestions(
 ): Promise<QuestionData[]> {
   let questionsBatch = [] as QuestionData[];
   let finalBatch = [] as QuestionData[];
-  while (finalBatch.length < 10) {
+  let maxTries = 10;
+  while (finalBatch.length < 10 && maxTries > 0) {
     questionsBatch = await fetchQuestions(apiKey, difficulty);
+    maxTries--;
 
-    for (let question of questionsBatch) {
-      if (question.multiple_correct_answers) break;
+    for (const question of questionsBatch) {
+      if (question.multiple_correct_answers === "true") {
+        continue;
+      }
       if (question.answers.answer_c) {
         if (question.answers.answer_d) {
           if (finalBatch.length >= 10) {

@@ -1,4 +1,5 @@
 export type PlayerAnswer = {
   questionId: number;
-  answer: string;
+  chosenAnswer: string;
+  correctAnswer: string;
 };

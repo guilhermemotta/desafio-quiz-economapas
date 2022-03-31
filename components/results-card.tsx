@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { CorrectAnswers, PlayerAnswer } from "../types";
 
 type ResultsCardProps = {
@@ -38,7 +39,7 @@ const ResultsCard = ({
               `${answer.answer}_correct` as keyof CorrectAnswers;
             const correctAnswer = correctAnswers[correctKey];
             const colors =
-              answer.answer === playerAnswer.answer
+              answer.answer === playerAnswer.chosenAnswer
                 ? "text-white bg-sky-600"
                 : "text-gray-800 bg-transparent";
             const border =

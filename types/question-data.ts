@@ -21,7 +21,7 @@ export type QuestionData = {
   difficulty: string;
   explanation?: string;
   id: number;
-  multiple_correct_answers: "false";
+  multiple_correct_answers: string;
   question: string;
   tags: [{ name: string }];
   tip?: string;

@@ -1,4 +1,6 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+import getCorrectAnswer from "../lib/get-correct-answer";
+import { CorrectAnswers } from "../types";
 
 import Button from "./button";
 
@@ -9,7 +11,12 @@ type QuestionCardProps = {
   answers: Object;
   tags?: string[];
   category?: string;
-  parentCallback: (questionId: number, playerAnswer: string) => void;
+  correctAnswers: CorrectAnswers;
+  parentCallback: (
+    questionId: number,
+    playerAnswer: string,
+    correctAnswer: string
+  ) => void;
 };
 
 const QuestionCard = ({
@@ -17,6 +24,7 @@ const QuestionCard = ({
   question,
   description,
   answers,
+  correctAnswers,
   parentCallback,
 }: QuestionCardProps) => {
   const answersArray = Object.entries(answers).map(([answer, value]) => {
@@ -34,7 +42,9 @@ const QuestionCard = ({
 
     const playerAnswer = target.answers.value;
     if (playerAnswer === "") return;
-    parentCallback(id, playerAnswer);
+    const correctAnswer = getCorrectAnswer(correctAnswers);
+
+    parentCallback(id, playerAnswer, correctAnswer);
     setSelectedAnswer("");
   };
 

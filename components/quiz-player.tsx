@@ -4,6 +4,7 @@ import { QuestionCard, ResultsPanel, LoadingOverlay } from ".";
 import type { PlayerAnswer, QuestionData } from "../types";
 import fetchQuestions from "../lib/fetch-questions";
 import setUpQuestions from "../lib/fetch-questions";
+import getCorrectAnswer from "../lib/get-correct-answer";
 
 type QuizPlayerProps = {
   apiKey: string;
@@ -16,39 +17,45 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
   const [currentQuestion, setCurrentQuestion] = useState<QuestionData>();
   const [isLoading, setLoading] = useState(false);
   const [playerAnswers, setPlayerAnswers] = useState<Array<PlayerAnswer>>([]);
-  const [isInitialSetup, setInitialSetup] = useState(true);
+  const [playerScore, setPlayerScore] = useState(0);
 
   const baseUrl = "https://quizapi.io/api/v1/questions";
   useEffect(() => {
-    // if (isInitialSetup) {
     setLoading(true);
     setUpQuestions(apiKey, difficulty)
       .then((data) => {
         setQuestionsData([...data]);
-        setCurrentIndex(0);
+      })
+      .then(() => {
         setCurrentQuestion(questionsData[currentIndex]);
-        setLoading(false);
-        setInitialSetup(false);
       })
       .catch((error) => console.error(error));
-    // }
   }, []);
 
-  // useEffect(() => {
-  //   setCurrentQuestion(questionsData[currentIndex]);
-  // }, [currentIndex]);
+  useEffect(() => {
+    setCurrentQuestion(questionsData[currentIndex]);
+    setLoading(false);
+  }, [questionsData, currentIndex]);
 
-  if (isLoading)
-    return (
-      <>
-        <LoadingOverlay />
-        <p>Loading...</p>
-      </>
-    );
+  if (isLoading) {
+    return <LoadingOverlay />;
+  }
   if (!questionsData) return <p>No questions data available.</p>;
 
-  const updatePlayerAnswers = (questionId: number, playerAnswer: string) => {
-    const currentAnswer: PlayerAnswer = { questionId, answer: playerAnswer };
+  const updatePlayerAnswers = (
+    questionId: number,
+    playerAnswer: string,
+    correctAnswer: string
+  ) => {
+    const currentAnswer: PlayerAnswer = {
+      questionId,
+      chosenAnswer: playerAnswer,
+      correctAnswer,
+    };
+    if (correctAnswer && correctAnswer.includes(playerAnswer)) {
+      console.log("Ponto!");
+      setPlayerScore(playerScore + 1);
+    }
     setPlayerAnswers([...playerAnswers, currentAnswer]);
     setCurrentIndex(currentIndex + 1);
     setCurrentQuestion(questionsData[currentIndex]);
@@ -63,12 +70,14 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
           answers={currentQuestion.answers}
           description={currentQuestion.description}
           parentCallback={updatePlayerAnswers}
+          correctAnswers={currentQuestion.correct_answers}
         />
       )}
       {playerAnswers.length === 10 && (
         <ResultsPanel
           playerAnswers={playerAnswers}
           questionsData={questionsData}
+          playerScore={playerScore}
         />
       )}
     </>
