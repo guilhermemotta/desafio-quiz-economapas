@@ -25,20 +25,20 @@ const Home: NextPage<HomeProps> = ({ apiKey }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col w-full my-5 py-5 bg-slate-100 shadow-lg">
+      <main className="flex flex-col w-full my-5 py-5">
         {!playerName ? (
           <StartPanel parentCallback={setupCallback} />
         ) : (
           <>
-            <h1>
-              Hello {playerName}, difficulty: {difficulty}
+            <h1 className="bg-gray-700 text-white w-11/12 self-center text-center">
+              Name: {playerName} ─ Difficulty: {difficulty}
             </h1>
             <QuizPlayer apiKey={apiKey} difficulty={difficulty} />
           </>
         )}
       </main>
 
-      <footer className=" bg-gray-100 text-gray-500 text-center">
+      <footer className=" bg-gray-100 text-gray-500 text-center shadow-md">
         <small>
           Desafio por{" "}
           <a

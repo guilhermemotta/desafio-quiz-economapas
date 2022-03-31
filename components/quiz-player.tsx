@@ -60,7 +60,7 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
   if (!questionsData) return <p>No questions data available.</p>;
 
   return (
-    <>
+    <div>
       {currentQuestion && (
         <QuestionCard
           id={currentQuestion.id}
@@ -80,7 +80,7 @@ const QuizPlayer = ({ apiKey, difficulty }: QuizPlayerProps) => {
           playerScore={playerScore}
         />
       )}
-    </>
+    </div>
   );
 };
 

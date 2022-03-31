@@ -3,6 +3,7 @@ import type { CorrectAnswers, PlayerAnswer } from "../types";
 
 type ResultsCardProps = {
   id: number;
+  number: number;
   question: string;
   description?: string;
   answers: Object;
@@ -15,11 +16,13 @@ type ResultsCardProps = {
 
 const ResultsCard = ({
   id,
+  number,
   question,
   description,
   answers,
   playerAnswer,
   correctAnswers,
+  category,
   parentCallback,
 }: ResultsCardProps) => {
   const answersArray = Object.entries(answers).map(([answer, value]) => {
@@ -29,8 +32,14 @@ const ResultsCard = ({
   if (!playerAnswer) return <></>;
 
   return (
-    <section>
-      <h2 className="text-xl">{question}</h2>
+    <section className="py-4 mt-2 mb-4">
+      <h3 className="text-sm">
+        <strong>Category:</strong> {category ?? "Code"}
+      </h3>
+      <h1 className="text-xl text-gray-600 mt-2 mb-4">
+        Question {"#" + number}
+      </h1>
+      <h2 className="text-lg">{question}</h2>
       {description && <h2>{description}</h2>}
       <div className="flex flex-col">
         {answers &&

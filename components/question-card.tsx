@@ -56,13 +56,13 @@ const QuestionCard = ({
   };
 
   return (
-    <section className="bg-white">
-      {category && (
-        <h3 className="text-sm">
-          <strong>Category:</strong> {category}
-        </h3>
-      )}
-      <h1 className="text-xl">Question {"#" + number}</h1>
+    <section className="bg-white rounded-md shadow-lg p-4">
+      <h3 className="text-sm">
+        <strong>Category:</strong> {category ?? "Code"}
+      </h3>
+      <h1 className="text-xl text-gray-600 mt-2 mb-4">
+        Question {"#" + number}
+      </h1>
       <h2 className="text-lg">{question}</h2>
       {description && <h2>{description}</h2>}
       <form className="flex flex-col" onSubmit={handleSubmit}>
@@ -79,7 +79,7 @@ const QuestionCard = ({
                     checked={selectedAnswer === answer.answer}
                     onChange={handleChange}
                   />
-                  <div className="mx-4 my-2 px-2 py-2 rounded-md border-2 border-sky-600 text-gray-800 peer-checked:text-white bg-transparent peer-checked:bg-sky-600">
+                  <div className="mx-4 my-2 px-2 py-2 rounded-md border-2 border-sky-600 text-gray-800 peer-checked:text-white bg-transparent peer-checked:bg-sky-600 cursor-pointer">
                     {answer.value}
                   </div>
                 </label>
