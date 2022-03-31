@@ -25,7 +25,7 @@ const Home: NextPage<HomeProps> = ({ apiKey }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col w-full my-5 py-5 bg-slate-100 dark:bg-slate-800 shadow-lg">
+      <main className="flex flex-col w-full my-5 py-5 bg-slate-100 shadow-lg">
         {!playerName ? (
           <StartPanel parentCallback={setupCallback} />
         ) : (
@@ -38,7 +38,7 @@ const Home: NextPage<HomeProps> = ({ apiKey }) => {
         )}
       </main>
 
-      <footer className=" bg-gray-100 dark:bg-gray-900 text-gray-500 text-center">
+      <footer className=" bg-gray-100 text-gray-500 text-center">
         <small>
           Desafio por{" "}
           <a

@@ -53,7 +53,7 @@ const QuestionCard = ({
   };
 
   return (
-    <section>
+    <section className="bg-white">
       <h2 className="text-lg">{question}</h2>
       {description && <h2>{description}</h2>}
       <form className="flex flex-col" onSubmit={handleSubmit}>
