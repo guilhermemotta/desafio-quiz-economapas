@@ -18,7 +18,7 @@ const Home: NextPage<HomeProps> = ({ apiKey }) => {
   };
 
   return (
-    <div className="md:flex flex-col max-w-2xl max-h-screen mx-auto px-2 py-4">
+    <div className="md:flex flex-col max-w-2xl h-screen mx-auto px-2 py-4">
       <Head>
         <title>Quiz!</title>
         <meta name="description" content="Prototype quiz app using Quiz Api" />
